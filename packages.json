@@ -1,8 +1,11 @@
 {
-    "providers-url": "/p/%package%/%hash%.json",
-    "provider-includes": {
-        "p/provider-latest/%hash%.json": {
-            "sha256": "83e350938647711cf95aee1a9742c5781fc6b2bf366314127ff7e125cd373d3d"
+    "providers-url": "https://raw.githubusercontent.com/imzyf/asset-packagist-mirror/main/p/%package%/%hash%.json",
+    "providers": {
+        "bower-asset/jquery": {
+            "sha256": "a43184812c03ce9471d88577fa9f607f6a30402a8bd112e033b92a23aa200eb7"
+        },
+        "bower-asset/inputmask": {
+            "sha256": "6c55ccd2e8e33f6885d44af91c7e4a9ec008d6e205aa517fdf58bd454b78e339"
         }
     },
     "available-package-patterns": [
