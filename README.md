@@ -8,3 +8,6 @@ wget https://asset-packagist.org/p/bower-asset/yii2-pjax/e6bf5fbda576f94fa24631c
 
 wget https://asset-packagist.org/p/bower-asset/punycode/abdc09d448193a64bc499100008d779a11e1f96d3bb552c0d933d294e030ba12.json -O ./p/bower-asset/punycode/abdc09d448193a64bc499100008d779a11e1f96d3bb552c0d933d294e030ba12.json
 ```
+## 本地部署
+
+`providers-url` 进行对应的调整
