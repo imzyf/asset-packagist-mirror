@@ -1,7 +1,7 @@
 {
-    "providers-url": "/imzyf/asset-packagist-mirror/main/p/%package%/%hash%.json",
+    "providers-url": "/p/%package%/%hash%.json",
     "provider-includes": {
-        "/imzyf/asset-packagist-mirror/main/p/provider-latest/%hash%.json": {
+        "p/provider-latest/%hash%.json": {
             "sha256": "83e350938647711cf95aee1a9742c5781fc6b2bf366314127ff7e125cd373d3d"
         }
     },
