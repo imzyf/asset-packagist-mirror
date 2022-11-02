@@ -11,3 +11,22 @@ wget https://asset-packagist.org/p/bower-asset/punycode/abdc09d448193a64bc499100
 ## 本地部署
 
 `providers-url` 进行对应的调整
+
+## conposer.json
+
+```json
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://raw.githubusercontent.com/imzyf/asset-packagist-mirror/main/",
+            "only": ["bower-asset/*"]
+        },
+        {
+            "type": "composer",
+            "url": "https://mirrors.tencent.com/composer/"
+        },
+        {
+            "packagist.org": false
+        }
+    ]
+```
