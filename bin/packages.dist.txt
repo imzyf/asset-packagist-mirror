@@ -1,0 +1,8 @@
+# Packages to mirror, one per line. Lines starting with # are ignored.
+# Run `make sync` after editing, then commit the result.
+bower-asset/bootstrap
+bower-asset/inputmask
+bower-asset/jquery
+bower-asset/punycode
+bower-asset/swagger-ui
+bower-asset/yii2-pjax
