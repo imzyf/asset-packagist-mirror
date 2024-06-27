@@ -2,19 +2,19 @@
   "providers-url": "https://raw.githubusercontent.com/imzyf/asset-packagist-mirror/main/p/%package%/%hash%.json",
   "providers": {
     "bower-asset/bootstrap": {
-      "sha256": "ff6f0019eeefe18818e58a51932fe01a8c153870ce586178c6ae8cb3504173aa"
+      "sha256": "192e6dc1439f0d4312cfb1a7606de33d07726545303986568cf7d98f8decee21"
     },
     "bower-asset/jquery": {
-      "sha256": "a43184812c03ce9471d88577fa9f607f6a30402a8bd112e033b92a23aa200eb7"
+      "sha256": "fdbece4f23204144ccdcf96e823ec62d75c88e75d92b3a75f94143041baf111e"
     },
     "bower-asset/inputmask": {
-      "sha256": "6c55ccd2e8e33f6885d44af91c7e4a9ec008d6e205aa517fdf58bd454b78e339"
+      "sha256": "d841920811fe452bd740e726c3ce4865dbfdedc280b98886bbd1c6a1bf76be04"
     },
     "bower-asset/yii2-pjax": {
-      "sha256": "e6bf5fbda576f94fa24631c5035505ef4d2c83f3564d8995d30af236e257e130"
+      "sha256": "eb109d1834b209b83d67eb90e4e98d7b98546b66a2c17de95a4b5a072ca8d431"
     },
     "bower-asset/punycode": {
-      "sha256": "abdc09d448193a64bc499100008d779a11e1f96d3bb552c0d933d294e030ba12"
+      "sha256": "727dbda3336fde65e173a7396eb70b2fab64e54d1ab1a3bb8b9faaf13b9296d3"
     }
   },
   "available-package-patterns": [
