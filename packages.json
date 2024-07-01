@@ -15,6 +15,9 @@
     },
     "bower-asset/punycode": {
       "sha256": "727dbda3336fde65e173a7396eb70b2fab64e54d1ab1a3bb8b9faaf13b9296d3"
+    },
+    "bower-asset/swagger-ui": {
+      "sha256": "6e1be194b06436d32c60373394b98f01ce6275fa3902a3e2e84f40fe54916008"
     }
   },
   "available-package-patterns": [

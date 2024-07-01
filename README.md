@@ -26,6 +26,9 @@ curl -o ./p/bower-asset/punycode/727dbda3336fde65e173a7396eb70b2fab64e54d1ab1a3b
 
 # "bower-asset/yii2-pjax"
 curl -o ./p/bower-asset/yii2-pjax/eb109d1834b209b83d67eb90e4e98d7b98546b66a2c17de95a4b5a072ca8d431.json https://cdn.asset-packagist.org/p/bower-asset/yii2-pjax/eb109d1834b209b83d67eb90e4e98d7b98546b66a2c17de95a4b5a072ca8d431.json
+
+# "bower-asset/swagger-ui"
+curl -o ./p/bower-asset/swagger-ui/6e1be194b06436d32c60373394b98f01ce6275fa3902a3e2e84f40fe54916008.json https://cdn.asset-packagist.org/p/bower-asset/swagger-ui/6e1be194b06436d32c60373394b98f01ce6275fa3902a3e2e84f40fe54916008.json
 ```
 
 ## 本地部署
