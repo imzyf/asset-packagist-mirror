@@ -1,5 +1,5 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+# Sync the mirror from upstream, then deploy the regenerated public/ to GitHub Pages
+name: Sync and deploy mirror to Pages
 
 on:
   # Runs on pushes targeting the default branch
@@ -31,12 +31,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Prepare .env
+        run: cp .env.example .env
+      - name: Sync mirror from upstream
+        run: make sync
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
+          # Publish the generated web root (packages.json + p/)
           path: 'public'
       - name: Deploy to GitHub Pages
         id: deployment

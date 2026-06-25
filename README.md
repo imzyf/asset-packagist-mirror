@@ -1,7 +1,7 @@
 # asset-packagist-mirror
 
 A tiny self-hosted mirror of [asset-packagist.org](https://asset-packagist.org)
-for the few `bower-asset/*` packages a Yii2 project actually uses — so Composer
+for the few `bower-asset/*` and `npm-asset/*` packages a Yii2 project actually uses — so Composer
 no longer has to download and search the 18 MB upstream index from inside China.
 
 ## How it works
@@ -53,14 +53,18 @@ Requirements: `bash`, `curl`, `jq`, `make`.
 ## Configure the served URL (`.env`)
 
 `RAW_BASE` is the public base URL of the mirror, read from `.env` (falls back to
-this repo's GitHub raw URL). Copy and edit:
+`/`, i.e. root-relative). It must end with a trailing slash. Copy and edit:
 
 ```bash
 cp .env.example .env
 ```
 
-- GitHub raw: `RAW_BASE=https://raw.githubusercontent.com/imzyf/asset-packagist-mirror/main/public`
-- Self-hosted nginx (`root .../public;`): `RAW_BASE=https://composer.example.com`
+- **GitHub Pages (default):** `RAW_BASE=/asset-packagist-mirror/` — the site is
+  served at `https://<user>.github.io/<repo>/`, so a root-relative path that is
+  just the repo name works. It does not hard-code the domain, so it stays
+  portable across forks and custom domains.
+- Self-hosted nginx (`root .../public;`): `RAW_BASE=https://composer.example.com/`
+- GitHub raw: `RAW_BASE=https://raw.githubusercontent.com/imzyf/asset-packagist-mirror/main/public/`
 
 Re-run `make sync` after changing `RAW_BASE` so `packages.json` is regenerated.
 
@@ -70,7 +74,7 @@ Re-run `make sync` after changing `RAW_BASE` so `packages.json` is regenerated.
 "repositories": [
     {
         "type": "composer",
-        "url": "https://raw.githubusercontent.com/imzyf/asset-packagist-mirror/main/public/",
+        "url": "https://zyf.im/asset-packagist-mirror/",
         "only": ["bower-asset/*", "npm-asset/*"]
     }
 ]
