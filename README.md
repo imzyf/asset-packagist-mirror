@@ -4,20 +4,6 @@ A tiny self-hosted mirror of [asset-packagist.org](https://asset-packagist.org)
 for the few `bower-asset/*` and `npm-asset/*` packages a Yii2 project actually uses — so Composer
 no longer has to download and search the 18 MB upstream index from inside China.
 
-## How it works
-
-Upstream uses the Composer v1 provider protocol, three levels deep:
-
-```txt
-packages.json                          (~240 B)
-  └─ provider-includes → p/provider-latest/{hash}.json   (~18 MB, 167k packages)
-       └─ providers["bower-asset/jquery"].sha256 = {pkgHash}
-            └─ p/bower-asset/jquery/{pkgHash}.json        (real version + dist data)
-```
-
-This mirror **flattens** that: the `providers` map is written directly into our
-own small `packages.json`, so Composer never fetches the 18 MB file.
-
 ## Use it in a project
 
 ```json
@@ -29,6 +15,20 @@ own small `packages.json`, so Composer never fetches the 18 MB file.
     }
 ]
 ```
+
+## How it works
+
+[Upstream](https://cdn.asset-packagist.org/packages.json) uses the Composer v1 provider protocol, three levels deep:
+
+```txt
+packages.json                          (~240 B)
+  └─ provider-includes → p/provider-latest/{hash}.json   (~18 MB, 167k packages)
+       └─ providers["bower-asset/jquery"].sha256 = {pkgHash}
+            └─ p/bower-asset/jquery/{pkgHash}.json        (real version + dist data)
+```
+
+This mirror **flattens** that: the `providers` map is written directly into our
+own small `packages.json`, so Composer never fetches the 18 MB file.
 
 ## Layout
 
