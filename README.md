@@ -18,6 +18,18 @@ packages.json                          (~240 B)
 This mirror **flattens** that: the `providers` map is written directly into our
 own small `packages.json`, so Composer never fetches the 18 MB file.
 
+## Use it in a project
+
+```json
+"repositories": [
+    {
+        "type": "composer",
+        "url": "https://zyf.im/asset-packagist-mirror/",
+        "only": ["bower-asset/*", "npm-asset/*"]
+    }
+]
+```
+
 ## Layout
 
 ```txt
@@ -30,6 +42,7 @@ own small `packages.json`, so Composer never fetches the 18 MB file.
 └── public/               # << web root (serve this folder)
     ├── index.html
     ├── packages.json     # generated
+    ├── generated-at.txt  # generated, last sync time (UTC)
     └── p/...             # provider files
 ```
 
@@ -44,9 +57,14 @@ Only `public/` is meant to be served; `bin/`, `.env`, and the cache stay private
 3. download the 18 MB `provider-latest.json` **only when that hash changed** (cached in `.cache/`);
 4. resolve each package's current `sha256` and download any missing `public/p/{package}/{hash}.json`;
 5. **prune** any stale provider files no longer referenced;
-6. regenerate `public/packages.json` with `providers-url` built from `RAW_BASE`.
+6. regenerate `public/packages.json` with `providers-url` built from `RAW_BASE`;
+7. write `public/generated-at.txt` with the current UTC build time.
 
-To add a package: add a line to `bin/packages.dist.txt`, run `make sync`, commit.
+Everything under `public/` it produces (`packages.json`, `generated-at.txt`, `p/`) is
+gitignored — it's CI-generated output, not source. To add a package: add a line to
+`bin/packages.dist.txt` and push to `main`; GitHub Actions runs the sync and deploys
+`public/` to Pages (see [Deploy](#deploy)). Run `make sync` locally only to preview
+the result before pushing.
 
 Requirements: `bash`, `curl`, `jq`, `make`.
 
@@ -64,21 +82,18 @@ cp .env.example .env
   just the repo name works. It does not hard-code the domain, so it stays
   portable across forks and custom domains.
 - Self-hosted nginx (`root .../public;`): `RAW_BASE=https://composer.example.com/`
-- GitHub raw: `RAW_BASE=https://raw.githubusercontent.com/imzyf/asset-packagist-mirror/main/public/`
 
-Re-run `make sync` after changing `RAW_BASE` so `packages.json` is regenerated.
+Re-run `make sync` after changing `RAW_BASE` so `packages.json` is regenerated. CI
+has no `.env` of its own — it copies `.env.example` verbatim (see
+[Deploy](#deploy)), so to change the deployed `RAW_BASE` edit `.env.example` itself.
 
-## Use it in a project
+## Deploy
 
-```json
-"repositories": [
-    {
-        "type": "composer",
-        "url": "https://zyf.im/asset-packagist-mirror/",
-        "only": ["bower-asset/*", "npm-asset/*"]
-    }
-]
-```
+`.github/workflows/sync-and-deploy.yml` runs on every push to `main` (and via
+manual `workflow_dispatch`): it checks out the repo, copies `.env.example` to
+`.env`, runs `make sync`, then uploads `public/` as a Pages artifact and deploys
+it. Nothing generated needs to be committed — the workflow rebuilds
+`packages.json`, `generated-at.txt`, and `p/` from scratch on each run.
 
 ## Self-hosted nginx
 

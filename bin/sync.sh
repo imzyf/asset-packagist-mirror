@@ -114,5 +114,8 @@ jq -n \
    }' > "$OUT.tmp"
 mv "$OUT.tmp" "$OUT"
 
+# 7. Record the build time separately (kept out of packages.json, which is Composer-facing).
+date -u +%Y-%m-%dT%H:%M:%SZ > "$PUBLIC_DIR/generated-at.txt"
+
 echo "==> wrote $OUT (providers-url base: $RAW_BASE)"
 echo "Done. Review the diff and commit."

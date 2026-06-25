@@ -26,7 +26,7 @@
 </head>
 <body>
   <h1>asset-packagist-mirror</h1>
-  <p class="sub">A tiny mirror of <a href="https://asset-packagist.org">asset-packagist.org</a> for the few <code>bower-asset/*</code> packages a Yii2 project actually uses.</p>
+  <p class="sub">A tiny mirror of <a href="https://asset-packagist.org">asset-packagist.org</a> for the few <code>bower-asset/*</code> and <code>npm-asset/*</code> packages a Yii2 project actually uses.</p>
 
   <h2>Use it</h2>
   <p>Add this to your project's <code>composer.json</code>:</p>
@@ -36,7 +36,7 @@
   <ul class="pkgs" id="pkgs"><li>loading…</li></ul>
 
   <footer>
-    Sync with <code>make sync</code> ·
+    Synced automatically via GitHub Actions · last build: <span id="built-at">…</span> ·
     <a href="https://github.com/imzyf/asset-packagist-mirror">source</a>
   </footer>
 
@@ -49,6 +49,11 @@
         { type: 'composer', url: repoUrl, only: ['bower-asset/*', 'npm-asset/*'] }
       ]
     }, null, 4);
+
+    fetch('generated-at.txt')
+      .then(r => r.text())
+      .then(text => { document.getElementById('built-at').textContent = text.trim(); })
+      .catch(() => { document.getElementById('built-at').textContent = 'unknown'; });
 
     fetch('packages.json')
       .then(r => r.json())
